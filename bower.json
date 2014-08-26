@@ -4,6 +4,6 @@
   "version": "0.0.0",
   "main": "src/js/EmbedTube.js",
   "dependencies": {
-    "jquery": "~1.10.*"
+    "event-trigger": "~0.1.1"
   }
 }

@@ -11,10 +11,18 @@
 <p>
 <a href="https://github.com/fnobi/embed-tube">https://github.com/fnobi/embed-tube</a>
 </p>
+<div id="demo-movie"></div>
 <!-- /.content --></section>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
 <script src="../EmbedTube.js"></script>
 <script>
-new EmbedTube();
+$(function () {
+    var movie = new EmbedTube({
+        elementId: 'demo-movie',
+        videoId: 'vj6OM906Mhs'
+    });
+});
 
 </script>
 </body>
