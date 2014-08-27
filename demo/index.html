@@ -3,24 +3,107 @@
 <head>
 <meta charset="utf-8" />
 <title>EmbedTube demo</title>
+<style>
+.content {
+  font-family: sans-serif;
+}
+.controller {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 1em;
+  width: 10em;
+  background-color: grey;
+  color: white;
+
+  border-radius: 10px;
+  box-shadow: 0px 5px 0px #333;
+
+  position: relative;
+  top: -5px;
+}
+.controller:hover {
+  top: 0px;
+  box-shadow: none;
+}
+.movie {
+  position: absolute;
+  background-color: grey;
+  top: 0%;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+}
+</style>
 </head>
 <body>
+
 <section class="content">
 <h1 class="content__title">EmbedTube</h1>
 <h2 class="content__description">Embed Youtube player wrapper class.</h2>
 <p>
 <a href="https://github.com/fnobi/embed-tube">https://github.com/fnobi/embed-tube</a>
 </p>
-<div id="demo-movie"></div>
+<a id="controller" class="controller" href="#">loading...</a>
 <!-- /.content --></section>
+
+<div id="demo-movie" class="movie"></div>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
 <script src="../EmbedTube.js"></script>
 <script>
 $(function () {
+    var VIDEO_ID = 'vj6OM906Mhs';
+
+    var isReady = false;
+    var isPlaying = false;
+
+
+    // init movie
     var movie = new EmbedTube({
         elementId: 'demo-movie',
-        videoId: 'vj6OM906Mhs'
+        videoId: VIDEO_ID
+    });
+
+
+    // init controller
+    var $controller = $('#controller');
+
+    $controller.on('click', function (e) {
+        e.preventDefault();
+
+        if (!isReady) {
+            return;
+        }
+
+        if (isPlaying) {
+            movie.pause();
+        } else {
+            movie.play();
+        }
+    });
+
+
+    // movie on ready
+    movie.on('ready', function () {
+        console.log('movie is ready!!');
+        isReady = true;
+        movie.play();
+    });
+
+    // movie on start
+    movie.on('playing', function () {
+        console.log('movie start');
+        isPlaying = true;
+        $controller.text('pause');
+    });
+
+    // movie on pause
+    movie.on('paused', function () {
+        console.log('movie pause');
+        isPlaying = false;
+        $controller.text('start');
     });
 });
 
