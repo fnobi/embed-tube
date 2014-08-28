@@ -91,6 +91,19 @@
         return this.player.getDuration();
     };
 
+    EmbedTube.prototype.seekTo = function (seconds, allowSeekAhead) {
+        if (!this.player) {
+            return null;
+        }
+        return this.player.seekTo(seconds, allowSeekAhead);
+    };
+
+    EmbedTube.prototype.setLoop = function (bool) {
+        if (!this.player) {
+            return null;
+        }
+        return this.player.setLoop(bool);
+    };
 
     // static vars & methods
 
