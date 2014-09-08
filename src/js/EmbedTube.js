@@ -3,6 +3,10 @@
     var EmbedTube = function (opts) {
         opts = opts || {};
 
+        if (opts.url) {
+            opts.videoId = this.parseUrl(opts.url);
+        }
+
         this.elementId = opts.elementId;
         this.width = opts.width || null;
         this.height = opts.height || null;
@@ -67,6 +71,22 @@
                 }
             }
         });
+    };
+    
+    EmbedTube.prototype.parseUrl = function (url) {
+        var REGEXP = /^https?:\/\/(www\.)?youtube\.com\/watch\?v=([0-9a-zA-Z_\-]+)/;
+
+        if (!url || !url.match) {
+            return null;
+        }
+
+        var matchData = url.match(REGEXP);
+
+        if (!matchData) {
+            return null;
+        }
+
+        return matchData[2];
     };
 
     EmbedTube.prototype.play = function () {

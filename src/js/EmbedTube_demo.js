@@ -1,5 +1,5 @@
 $(function () {
-    var VIDEO_ID = 'vj6OM906Mhs';
+    var URL = 'https://www.youtube.com/watch?v=vj6OM906Mhs';
 
     var isReady = false;
     var isPlaying = false;
@@ -7,8 +7,8 @@ $(function () {
 
     // init movie
     var movie = new EmbedTube({
-        elementId: 'demo-movie',
-        videoId: VIDEO_ID
+        url: URL,
+        elementId: 'demo-movie'
     });
 
 
