@@ -10,6 +10,8 @@ bower install embed-tube
 
 ## usage
 
+See [demo page](See demo page also.) also.
+
 ```javascript
 $(function () {
     var URL = 'https://www.youtube.com/watch?v=vj6OM906Mhs';
