@@ -10,7 +10,7 @@ bower install embed-tube
 
 ## usage
 
-See [demo page](See demo page also.) also.
+See [demo page](http://fnobi.github.io/embed-tube/demo/) also.
 
 ```javascript
 $(function () {
