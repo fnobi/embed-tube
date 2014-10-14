@@ -249,6 +249,20 @@ EventTrigger.extend = function (Klass) {
         return this.player.setLoop(bool);
     };
 
+    EmbedTube.prototype.setVolume = function (v) {
+        if (!this.player) {
+            return null;
+        }
+        return this.player.setVolume(v);
+    };
+
+    EmbedTube.prototype.getVolume = function () {
+        if (!this.player) {
+            return null;
+        }
+        return this.player.getVolume();
+    };
+
     // static vars & methods
 
     EmbedTube.isReady = false;
