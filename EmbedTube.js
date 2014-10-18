@@ -146,7 +146,7 @@ EventTrigger.extend = function (Klass) {
 
         if (EmbedTube.isReady) {
             this.createPlayer();
-        } else if (YT && YT.Player) {
+        } else if (window.YT && window.YT.Player) {
             onReady();
             this.createPlayer();
         } else {
@@ -277,6 +277,15 @@ EventTrigger.extend = function (Klass) {
     }
 
     window.onYouTubeIframeAPIReady = onReady;
+
+
+    // load script
+    (function () {
+        var script = document.createElement('script');
+        script.src = 'https://www.youtube.com/iframe_api';
+        document.body.appendChild(script);
+    })();
+
 
     exports.EmbedTube = EmbedTube;
 })(this);
