@@ -150,7 +150,6 @@ EventTrigger.extend = function (Klass) {
             onReady();
             this.createPlayer();
         } else {
-            var self = this;
             EmbedTube.queue.push(this);
         }
     };
@@ -159,7 +158,7 @@ EventTrigger.extend = function (Klass) {
     EmbedTube = EventTrigger.extend(EmbedTube);
 
     EmbedTube.prototype.createPlayer = function () {
-        var self = this;
+        var instance = this;
 
         this.player = new YT.Player(this.elementId, {
             width: this.width,
@@ -168,30 +167,30 @@ EventTrigger.extend = function (Klass) {
             playerVars: this.playerVars,
             events: {
                 onReady: function (e) {
-                    self.emit('ready', e);
+                    instance.trigger('ready', e);
                 },
                 onStateChange: function (e) {
-                    self.emit('stateChange', e);
+                    instance.trigger('stateChange', e);
 
                     switch (e.data) {
-                        case YT.PlayerState.ENDED: self.emit('ended', e); break;
-                        case YT.PlayerState.PLAYING: self.emit('playing', e); break;
-                        case YT.PlayerState.PAUSED: self.emit('paused', e); break;
-                        case YT.PlayerState.BUFFERING: self.emit('buffering', e); break;
-                        case YT.PlayerState.CUED: self.emit('cued', e); break;
+                        case YT.PlayerState.ENDED: instance.trigger('ended', e); break;
+                        case YT.PlayerState.PLAYING: instance.trigger('playing', e); break;
+                        case YT.PlayerState.PAUSED: instance.trigger('paused', e); break;
+                        case YT.PlayerState.BUFFERING: instance.trigger('buffering', e); break;
+                        case YT.PlayerState.CUED: instance.trigger('cued', e); break;
                     }
                 },
                 onPlaybackQualityChange: function (e) {
-                    self.emit('playbackQualityChange', e);
+                    instance.trigger('playbackQualityChange', e);
                 },
                 onPlaybackRateChange: function (e) {
-                    self.emit('playbackRateChange', e);
+                    instance.trigger('playbackRateChange', e);
                 },
                 onError: function (e) {
-                    self.emit('error', e);
+                    instance.trigger('error', e);
                 },
                 onApiChange: function (e) {
-                    self.emit('apiChange', e);
+                    instance.trigger('apiChange', e);
                 }
             }
         });
