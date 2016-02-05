@@ -287,4 +287,4 @@ EventTrigger.extend = function (Klass) {
 
 
     exports.EmbedTube = EmbedTube;
-})(this);
+})(module ? module.exports : this);

@@ -163,4 +163,4 @@
 
 
     exports.EmbedTube = EmbedTube;
-})(this);
+})(module ? module.exports : this);
